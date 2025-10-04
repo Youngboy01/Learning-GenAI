@@ -10,13 +10,13 @@ style_input = st.selectbox("Select explanation style",["Beginner Friendly","Code
 length_input = st.selectbox("Select Explanation Length",["Short(1-2 paragraphs)","Medium(3-5 paragraphs)","Long(Detailed explanation)"])
 #Design the prompt template
 template = load_prompt('template.json')
-prompt=template.invoke({
-    'paper_input':paper_input,
-    'style_input':style_input,
-    'length_input':length_input
-}  
-)
+
 if st.button('Summarize'):
-    result = model.invoke(prompt)
+    chain = template | model
+    result = chain.invoke({
+        'paper_input':paper_input,
+        'style_input':style_input,
+        'length_input':length_input
+    })
     st.write(result)
 
