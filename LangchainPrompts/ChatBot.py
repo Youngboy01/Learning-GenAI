@@ -14,3 +14,4 @@ while True:
     chat_history.append(AIMessage(content=result))
     print("Gemini: ",result)
 print(chat_history)
+#
